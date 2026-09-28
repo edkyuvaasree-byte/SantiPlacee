@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SantiHer - Restrooms</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0d0b14;
+            color: white;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #c5a7ff;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #181521;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #9b7cff;
+            padding: 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #393344;
+        }
+
+        tr:hover {
+            background: #24202f;
+        }
+
+        .status {
+            color: #8ee6b1;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: #9b7cff;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>SantiHer — Restroom Management</h1>
+
+    <p class="subtitle">
+        Live restroom information from the SantiHer database
+    </p>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Restroom</th>
+            <th>Block</th>
+            <th>Floor</th>
+            <th>Gender</th>
+            <th>Status</th>
+            <th>Last Cleaned</th>
+            <th>Assigned Staff</th>
+        </tr>
+
+        <tr>
+            <td colspan="8" style="text-align:center;">
+                Loading database records...
+            </td>
+        </tr>
+
+    </table>
+
+    <a href="dashboard.html" class="back-btn">
+        ← Back to Dashboard
+    </a>
+
+</body>
+</html>

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SantiHer | Report an Issue</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #0d0b14;
+    color: #f5f3fa;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Background Glow */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #9b7cff;
+    opacity: 0.10;
+    filter: blur(150px);
+    border-radius: 50%;
+    top: -150px;
+    left: 250px;
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    background: #e68ab0;
+    opacity: 0.08;
+    filter: blur(150px);
+    border-radius: 50%;
+    bottom: -150px;
+    right: 100px;
+    z-index: -1;
+}
+
+/* Sidebar */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 240px;
+    height: 100vh;
+    padding: 28px 18px;
+    background: rgba(20, 17, 30, 0.82);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    padding: 0 12px;
+    margin-bottom: 45px;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: #9b7cff;
+}
+
+.menu-title {
+    font-size: 11px;
+    color: #777283;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0 12px;
+    margin-bottom: 12px;
+}
+
+.menu a {
+    display: block;
+    padding: 13px 14px;
+    margin: 5px 0;
+    color: #aaa5b5;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background: rgba(155,124,255,0.10);
+    color: white;
+    transform: translateX(3px);
+}
+
+.menu a.active {
+    background: linear-gradient(
+        135deg,
+        rgba(155,124,255,0.20),
+        rgba(230,138,176,0.10)
+    );
+    color: white;
+    border: 1px solid rgba(155,124,255,0.18);
+}
+
+/* Main */
+
+.main {
+    margin-left: 240px;
+    padding: 35px 45px;
+}
+
+/* Header */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 7px;
+}
+
+.header p {
+    color: #8e8998;
+    font-size: 14px;
+}
+
+.back-btn {
+    padding: 11px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.04);
+    color: #ddd8e5;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(155,124,255,0.15);
+    border-color: rgba(155,124,255,0.30);
+}
+
+/* Layout */
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 25px;
+}
+
+/* Cards */
+
+.card {
+    background: rgba(22, 19, 32, 0.78);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 28px;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.20);
+}
+
+.card h2 {
+    font-size: 18px;
+    margin-bottom: 7px;
+}
+
+.card-subtitle {
+    color: #85808e;
+    font-size: 13px;
+    margin-bottom: 28px;
+}
+
+/* Form */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #d6d1dc;
+    margin-bottom: 9px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 13px 14px;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 11px;
+    color: #f5f3fa;
+    outline: none;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: rgba(155,124,255,0.55);
+    box-shadow: 0 0 0 3px rgba(155,124,255,0.08);
+}
+
+.form-group select option {
+    background: #181521;
+    color: white;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Two Columns */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+/* Priority */
+
+.priority-options {
+    display: flex;
+    gap: 10px;
+}
+
+.priority-options label {
+    flex: 1;
+    margin: 0;
+}
+
+.priority-options input {
+    display: none;
+}
+
+.priority-box {
+    display: block;
+    text-align: center;
+    padding: 11px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #aaa5b5;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.priority-options input:checked + .priority-box {
+    background: rgba(155,124,255,0.16);
+    border-color: #9b7cff;
+    color: white;
+}
+
+/* Submit */
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #9b7cff, #c18bff);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 10px 30px rgba(155,124,255,0.18);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(155,124,255,0.28);
+}
+
+/* Side Information */
+
+.info-card {
+    margin-bottom: 20px;
+}
+
+.info-item {
+    padding: 16px;
+    border-radius: 13px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 12px;
+}
+
+.info-item strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.info-item span {
+    color: #85808e;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* Quick Issues */
+
+.quick-issues {
+    display: grid;
+    gap: 10px;
+}
+
+.quick-issue {
+    padding: 13px 14px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 11px;
+    color: #b7b1c0;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.quick-issue:hover {
+    background: rgba(155,124,255,0.10);
+    color: white;
+    transform: translateX(3px);
+}
+
+/* Toast */
+
+.toast {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background: #1d1928;
+    border: 1px solid rgba(155,124,255,0.35);
+    padding: 16px 20px;
+    border-radius: 13px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: 0.35s;
+    font-size: 13px;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+
+@media(max-width: 900px) {
+
+    .sidebar {
+        width: 190px;
+    }
+
+    .main {
+        margin-left: 190px;
+        padding: 25px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 650px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .main {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .header {
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        Santi<span>Her</span>
+    </div>
+
+    <div class="menu-title">Workspace</div>
+
+    <div class="menu">
+
+        <a href="dashboard.html">Dashboard</a>
+
+        <a href="restrooms.html">Restrooms</a>
+
+        <a href="cleanliness.html">Cleanliness</a>
+
+        <a href="report-issue.html" class="active">Report an Issue</a>
+
+        <a href="issues.html">Issue Management</a>
+
+        <a href="supplies.html">Supplies</a>
+
+        <a href="reports.html">Reports</a>
+
+    </div>
+
+    <div class="menu-title" style="margin-top:35px;">
+        System
+    </div>
+
+    <div class="menu">
+
+        <a href="#">Settings</a>
+
+        <a href="index.html">Logout</a>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+    <div class="header">
+
+        <div>
+
+            <h1>Report an Issue</h1>
+
+            <p>
+                Help us maintain a clean, safe and hygienic campus.
+            </p>
+
+        </div>
+
+        <a href="dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="content-grid">
+
+
+        <!-- FORM -->
+
+        <div class="card">
+
+            <h2>Submit a Hygiene Report</h2>
+
+            <p class="card-subtitle">
+                Tell us what needs attention and our maintenance team can take action.
+            </p>
+
+
+            <form onsubmit="submitIssue(event)">
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Restroom</label>
+
+                        <select id="restroom" required>
+
+                            <option value="">Select restroom</option>
+
+                            <option>Block A Restroom</option>
+                            <option>Block B Restroom</option>
+                            <option>Block C Restroom</option>
+                            <option>Block D Restroom</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Issue Type</label>
+
+                        <select id="issueType" required>
+
+                            <option value="">Select issue</option>
+
+                            <option>Water not available</option>
+                            <option>Soap empty</option>
+                            <option>Tissue unavailable</option>
+                            <option>Sanitary bin full</option>
+                            <option>Restroom needs cleaning</option>
+                            <option>Light / Fan problem</option>
+                            <option>Door / Lock problem</option>
+                            <option>Other</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Priority</label>
+
+                    <div class="priority-options">
+
+                        <label>
+
+                            <input type="radio" name="priority" value="Low">
+
+                            <span class="priority-box">
+                                Low
+                            </span>
+
+                        </label>
+
+
+                        <label>
+
+                            <input type="radio" name="priority" value="Medium" checked>
+
+                            <span class="priority-box">
+                                Medium
+                            </span>
+
+                        </label>
+
+
+                        <label>
+
+                            <input type="radio" name="priority" value="High">
+
+                            <span class="priority-box">
+                                High
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Description</label>
+
+                    <textarea
+                        id="description"
+                        placeholder="Describe the issue clearly..."
+                        required></textarea>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Your Name</label>
+
+                        <input
+                            type="text"
+                            id="reportedBy"
+                            placeholder="Enter your name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Contact (Optional)</label>
+
+                        <input
+                            type="text"
+                            id="contact"
+                            placeholder="Email or phone">
+
+                    </div>
+
+                </div>
+
+
+                <button type="submit" class="submit-btn">
+
+                    Submit Issue →
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div>
+
+
+            <div class="card info-card">
+
+                <h2>How it works</h2>
+
+                <p class="card-subtitle">
+                    Your report follows a simple workflow.
+                </p>
+
+
+                <div class="info-item">
+
+                    <strong>01 · Submit</strong>
+
+                    <span>
+                        Report a cleanliness, supply or maintenance problem.
+                    </span>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <strong>02 · Review</strong>
+
+                    <span>
+                        The maintenance team reviews the reported issue.
+                    </span>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <strong>03 · Resolve</strong>
+
+                    <span>
+                        The issue is addressed and marked as resolved.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>Quick Reports</h2>
+
+                <p class="card-subtitle">
+                    Select a common issue.
+                </p>
+
+
+                <div class="quick-issues">
+
+                    <div
+                        class="quick-issue"
+                        onclick="quickIssue('Water not available')">
+
+                        💧 Water not available
+
+                    </div>
+
+
+                    <div
+                        class="quick-issue"
+                        onclick="quickIssue('Soap empty')">
+
+                        🧼 Soap dispenser empty
+
+                    </div>
+
+
+                    <div
+                        class="quick-issue"
+                        onclick="quickIssue('Sanitary bin full')">
+
+                        🗑 Sanitary bin full
+
+                    </div>
+
+
+                    <div
+                        class="quick-issue"
+                        onclick="quickIssue('Restroom needs cleaning')">
+
+                        ✨ Restroom needs cleaning
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div class="toast" id="toast">
+    Issue submitted successfully!
+</div>
+
+
+<script>
+
+function submitIssue(event) {
+
+    event.preventDefault();
+
+    const restroom = document.getElementById("restroom").value;
+    const issueType = document.getElementById("issueType").value;
+
+    if (restroom === "" || issueType === "") {
+        showToast("Please complete the required fields.");
+        return;
+    }
+
+    showToast("Issue submitted successfully!");
+
+    document.querySelector("form").reset();
+
+}
+
+
+function quickIssue(issue) {
+
+    document.getElementById("issueType").value = issue;
+
+    document.getElementById("description").value =
+        "The restroom requires attention regarding " + issue.toLowerCase() + ".";
+
+}
+
+
+function showToast(message) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(function() {
+
+        toast.classList.remove("show");
+
+    }, 3000);
+
+}
+
+</script>
+
+</body>
+</html>
